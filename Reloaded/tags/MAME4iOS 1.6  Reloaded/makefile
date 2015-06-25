@@ -40,9 +40,11 @@ iOSNOJAILBREAK = 1
 
 #iOSSIMULATOR = 1
 
-#iOSARMV7=1
+iOSARMV7=1
 
-iOSARMV7S=1
+#iOSARMV7S=1
+
+PTR64 = 0
 
 ################
 
@@ -100,7 +102,7 @@ ifndef iOSSIMULATOR
 MYPREFIX=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/
 
 #BASE_DEV=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk
-BASE_DEV=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk
+BASE_DEV=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk
 else
 
 MYPREFIX=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/
@@ -397,11 +399,14 @@ endif
 
 ifdef iOSOSX
 
-AR = @$(MYPREFIX)ar
+#AR = @$(MYPREFIX)ar
 #CC = @$(MYPREFIX)gcc-4.2
 #LD = @$(MYPREFIX)g++-4.2
-CC = @$(MYPREFIX)gcc
-LD = @$(MYPREFIX)g++
+#CC = @$(MYPREFIX)gcc
+#LD = @$(MYPREFIX)g++
+AR = clang
+CC = clang
+LD = clang++
 
 
 else
@@ -640,7 +645,7 @@ endif
 # archiving flags
 #-------------------------------------------------
 # Default to something reasonable for all platforms
-ARFLAGS = -cr
+#ARFLAGS = -cr
 # Deal with macosx brain damage if COMMAND_MODE is in
 # the luser's environment:
 ifeq ($(TARGETOS),macosx)
